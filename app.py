@@ -1,9 +1,8 @@
-from fastapi import FastAPI, Request, APIRouter
+from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 import requests
 
 app = FastAPI()
-router = APIRouter()
 
 
 @app.get("/api/hello")
@@ -48,8 +47,6 @@ def get_temperature(lat, lon):
     data = response.json()
     print(data)
     return data["main"]["temp"]
-
-router.add(app)
 
 
 if __name__ == '__main__':
