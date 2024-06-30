@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 import requests
@@ -40,12 +42,11 @@ def get_location_data(ip):
 
 
 def get_temperature(lat, lon):
-    api_key = "8f6f4587f0f37ace4506914e4f1f8da1"
+    api_key = os.environ.get('api_key')
     response = requests.get(
         f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&unit=metric&appid={api_key}"
     )
     data = response.json()
-    print(data)
     return data["main"]["temp"]
 
 
